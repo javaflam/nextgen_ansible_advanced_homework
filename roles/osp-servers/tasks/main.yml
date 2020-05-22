@@ -32,7 +32,7 @@
   with_dict: "{{ osp_servers }}"
    
 - name: Retrieve OpenStack Server Facts
-  os_server_facts:
+  os_server_info:
     cloud: openstack
   register: result
 
@@ -44,5 +44,5 @@
     timeout: 600
   delegate_to: "{{ inventory_hostname }}"
   with_items: 
-    - "{{ result.ansible_facts.openstack_servers }}"
+    - "{{ result.openstack_servers }}"
 
