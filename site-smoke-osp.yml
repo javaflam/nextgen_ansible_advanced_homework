@@ -4,7 +4,7 @@
   - name: OpenStack servers
     os_server_facts:
       cloud: openstack
-      server: 'frontend'
+      server: frontend
     register: result
     tags:
       - osp.smoke
@@ -12,6 +12,7 @@
   - name: Curl website
     uri:
       url: "http://{{item.public_v4}}"
+      status_code: 200
       return_content: yes
     with_items:
       - "{{ result.ansible_facts.openstack_servers }}"
